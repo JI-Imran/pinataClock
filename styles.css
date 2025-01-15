@@ -1,0 +1,59 @@
+/* Make the entire page a flex container so we can center .lottie-container */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;             /* no scrollbars */
+    display: flex;
+    justify-content: center;      /* center horizontally */
+    align-items: center;          /* center vertically */
+  }
+  
+  /* Lock .lottie-container to a 9:16 ratio, 
+     and keep it within the screen’s dimensions */
+  .lottie-container {
+    /* Modern browsers: aspect-ratio property */
+    aspect-ratio: 9 / 16;
+  
+    /* Let’s scale up as large as possible without exceeding screen */
+    width: min(90vw, 56.25vh); /* 9/16 = 0.5625 => (100vh * 0.5625) = 56.25vh */
+  
+    /* Ensure it never exceeds the viewport dimensions */
+    max-width: 100vw;
+    max-height: 100vh;
+  
+    /* Optional: background color for debugging */
+    background-color: rgba(0, 0, 255, 0.1);
+  
+    position: relative; /* so absolutely-positioned child wrappers remain in place */
+    overflow: hidden;   /* hides anything that might overflow if aspect ratio is strict */
+  }
+  
+  
+#textCTA {
+    /* e.g., 50% width, centered in container */
+    position: absolute;
+    top: 65%;
+    left: 0;
+
+    /* e.g., 50% width, centered in container */
+    /* top: 75%; */
+    overflow: hidden;
+  }
+
+#EntryDancePlayer1 {
+    /* e.g., 50% width, centered in container */
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    /* e.g., 50% width, centered in container */
+    /* top: 75%; */
+    overflow: hidden;
+
+  }
+
+
+
+

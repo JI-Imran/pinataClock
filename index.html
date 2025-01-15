@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Simple Lottie + Howler Demo</title>
+  <!-- Link to your stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- dotlottie-player library -->
+  <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.js"></script>
+
+  <!-- howler library -->
+  <script src="https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.min.js"></script>
+</head>
+<body>
+
+
+  <!-- Container for all Lottie elements (created in lottieConf.js) -->
+  <div class="lottie-container"></div>
+
+  <script>
+    window.MediaID = 1;
+    window.MediaVersionID = 455;
+    window.CanvasID = "C2LqhEOK";
+
+  </script>
+  <!-- Your custom scripts in the proper order -->
+  <script src="lottieConf.js"></script>
+  <script src="audioConf.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
