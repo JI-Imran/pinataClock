@@ -31,6 +31,16 @@ html, body {
   }
   
   
+#clock{  
+    /* e.g., 50% width, centered in container */
+    position: absolute;
+    top: 0;
+    /* left: 0; */
+
+    /* e.g., 50% width, centered in container */
+    /* top: 75%; */
+    overflow: hidden;
+}
 #textCTA {
     /* e.g., 50% width, centered in container */
     position: absolute;

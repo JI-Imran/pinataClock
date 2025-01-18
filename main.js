@@ -3,12 +3,14 @@
 console.log("game.js is loaded");
 
 // Pull references from the global window objects that were defined in lottieConf.js and audioConf.js
-const { EntryDancePlayer1, pointer, textCTA } = window.lottiePlayers;
+// const { EntryDancePlayer1, pointer, textCTA } = window.lottiePlayers;
+const { EntryDancePlayer1, pointer, textCTA, clock, textAlert } = window.lottiePlayers;
 // e.g. if you have more players, destructure them similarly
 
 let onAllSoundsReady = false;
 let onAllLottieReady = false;
 let started = false;
+let allowClick = true;
 
 // We'll store our timeout ID here so we can cancel it upon click
 let noClickTimeout = null;
@@ -60,6 +62,14 @@ function checkEvents() {
         console.log("started after setTimeout ! (inner)");
         window.playSegments(pointer, [[0, 1000]], false);
         window.playSegments(textCTA, [[0, 100]], false);
+        window.playSegments(clock, [[0, 1920]], false);
+
+
+        // Disable clicking after the clock finishes
+        setTimeout(()=>{
+          console.log("Clock event finished. Disabling clicks.");
+          allowClick = false; // Prevent further clicks
+        }, 1920 * 16.67); // Assuming 60fps (16.67ms per frame)
       }, 1000);
 
       // Play a sound if needed...
@@ -72,12 +82,18 @@ function checkEvents() {
 
 // 2) One-time click function
 function handleFirstClick() {
+  if (!allowClick) {
+    console.log("Click disabled. Exploding event not allowed.");
+    return; // Do nothing if clicks are disabled
+  }
+  
   console.log("User clicked! Playing [300..500] segment now.");
 
 
 
   // Play the next segment
   window.playSound(window.popSound);
+  window.playSegments(clock, [[0, 0]], false);
   window.playSegments(EntryDancePlayer1, [[310, 500]], false);
   window.playSegments(textCTA, [[120, 150]], false);
 
