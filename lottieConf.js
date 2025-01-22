@@ -1,5 +1,5 @@
 // lottieConf.js (classic script style)
-console.log("lottieConf is on");
+// console.log("lottieConf is on");
 
 // 1) Keep a global object for dotlottie-player elements
 window.lottiePlayers = {};  // was `export const lottiePlayers = {}`
@@ -49,7 +49,7 @@ const playersConfig = [
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Create the <div> + <dotlottie-player> elements right away
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-console.log("Creating <dotlottie-player> elements...");
+// console.log("Creating <dotlottie-player> elements...");
 
 // 2) Get a container in which to create the elements
 const lottieContainer = document.querySelector(".lottie-container");
@@ -79,7 +79,7 @@ if (!lottieContainer) {
     readinessMap[key] = false;
   });
 
-  console.log("All <dotlottie-player> elements created. Checking readiness...");
+  // console.log("All <dotlottie-player> elements created. Checking readiness...");
 
   // Kick off the readiness polling
   checkLottieReadinessAndFireEvent();
@@ -90,7 +90,7 @@ if (!lottieContainer) {
  * Dispatches "allEntryLottiesReady" when *all* are ready.
  */
 function checkLottieReadinessAndFireEvent(intervalMs = 100) {
-  console.log("Starting Lottie readiness check...");
+  // console.log("Starting Lottie readiness check...");
 
   const startTime = Date.now();
   const checkInterval = setInterval(() => {
@@ -110,16 +110,16 @@ function checkLottieReadinessAndFireEvent(intervalMs = 100) {
       const state = player.getState().currentState;
       if (state === "ready") {
         readinessMap[key] = true;
-        console.log(`✅ ${key} is ready after ${elapsed}ms`);
+        // console.log(`✅ ${key} is ready after ${elapsed}ms`);
       } else {
         allReady = false;
-        console.log(`⏳ ${key} NOT ready yet (${state}). Elapsed: ${elapsed}ms`);
+        // console.log(`⏳ ${key} NOT ready yet (${state}). Elapsed: ${elapsed}ms`);
       }
     });
 
     if (allReady) {
       clearInterval(checkInterval);
-      console.log("All Lottie players are ready!");
+      // console.log("All Lottie players are ready!");
       document.body.classList.add("loaded");
 
       // Dispatch a custom event so other scripts can continue
@@ -133,7 +133,7 @@ function checkLottieReadinessAndFireEvent(intervalMs = 100) {
  * on a single <dotlottie-player>.
  */
 function playSegments(player, segments, loop = false, destroy = false) {
-  console.log("player inside playSegments =>", player);
+  // console.log("player inside playSegments =>", player);
 
   // Cancel any previous segment-play tasks
   if (player._currentPlaySegmentsTask) {
@@ -160,7 +160,7 @@ function playSegments(player, segments, loop = false, destroy = false) {
     }
 
     const [startFrame, endFrame] = segments[currentSegmentIndex];
-    console.log(`${player.id}: Playing segment #${currentSegmentIndex + 1} from ${startFrame} to ${endFrame}`);
+    // console.log(`${player.id}: Playing segment #${currentSegmentIndex + 1} from ${startFrame} to ${endFrame}`);
 
     player.pause();
     player.seek(startFrame);

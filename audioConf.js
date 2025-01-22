@@ -3,7 +3,7 @@ let popSound;
 
 // Create a function that initializes popSound
 function initializePopSound() {
-  console.log("initializePopSound started");
+  // console.log("initializePopSound started");
 
   // Create the Howl instance
   popSound = new Howl({
@@ -14,7 +14,7 @@ function initializePopSound() {
 
     // When the sound finishes loading, fire an event
     onload: () => {
-      console.log("popSound is loaded!");
+      // console.log("popSound is loaded!");
       // Dispatch a custom event so other code can listen
       document.dispatchEvent(new Event("onAllSoundsReady"));
     },
@@ -26,7 +26,7 @@ function initializePopSound() {
 
 // Optionally, a helper function to play the sound
 function playSound(sound) {
-  console.log("Playing sound:", sound);
+  // console.log("Playing sound:", sound);
   sound.play();
 }
 

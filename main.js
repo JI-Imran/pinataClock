@@ -1,6 +1,6 @@
 // game.js (classic style, no import/export)
 
-console.log("game.js is loaded");
+// console.log("game.js is loaded");
 
 // Pull references from the global window objects that were defined in lottieConf.js and audioConf.js
 // const { EntryDancePlayer1, pointer, textCTA } = window.lottiePlayers;
@@ -23,12 +23,12 @@ document.addEventListener(`${window.MediaID}-${window.MediaVersionID}-allLotties
 
 // Listen for the custom event from audioConf.js
 document.addEventListener("onAllSoundsReady", function() {
-  console.log("onAllSoundsReady!", onAllSoundsReady);
+  // console.log("onAllSoundsReady!", onAllSoundsReady);
   onAllSoundsReady = true;
   checkEvents();
 });
 
-console.log("1");
+// console.log("1");
 
 // Kick off the readiness checks + sound loading
 // (Both functions come from your global scripts: lottieConf.js + audioConf.js)
@@ -36,20 +36,20 @@ window.checkLottieReadinessAndFireEvent();
 window.initializePopSound();
 
 function checkEvents() {
-  console.log("onAllLottieReady", onAllLottieReady);
-  console.log("onAllSoundsReady", onAllSoundsReady);
-  console.log("started", started);
+  // console.log("onAllLottieReady", onAllLottieReady);
+  // console.log("onAllSoundsReady", onAllSoundsReady);
+  // console.log("started", started);
 
   if (onAllLottieReady && onAllSoundsReady && !started) {
 
     document.dispatchEvent(new Event(`${window.MediaID}-${window.MediaVersionID}-STARTED`));
     window.parent.postMessage(`${window.MediaID}-${window.MediaVersionID}-STARTED`, "*");
-    console.log(`${window.MediaID}-${window.MediaVersionID}-STARTED 🟢-> was fired!🚀`);
+    // console.log(`${window.MediaID}-${window.MediaVersionID}-STARTED 🟢-> was fired!🚀`);
 
     started = true;
 
     setTimeout(() => {
-      console.log("started after setTimeout !");
+      // console.log("started after setTimeout !");
 
       // 1) Once we reach this point, set up a one-time click handler
       document.addEventListener('click', handleFirstClick);
@@ -59,7 +59,7 @@ function checkEvents() {
 
 
       setTimeout(() => {
-        console.log("started after setTimeout ! (inner)");
+        // console.log("started after setTimeout ! (inner)");
         window.playSegments(pointer, [[0, 1000]], false);
         window.playSegments(textCTA, [[0, 100]], false);
         window.playSegments(clock, [[0, 1920]], false);
@@ -67,7 +67,7 @@ function checkEvents() {
 
         // Disable clicking after the clock finishes
         setTimeout(()=>{
-          console.log("Clock event finished. Disabling clicks.");
+          // console.log("Clock event finished. Disabling clicks.");
           allowClick = false; // Prevent further clicks
         }, 1920 * 16.67); // Assuming 60fps (16.67ms per frame)
       }, 1000);
@@ -83,11 +83,11 @@ function checkEvents() {
 // 2) One-time click function
 function handleFirstClick() {
   if (!allowClick) {
-    console.log("Click disabled. Exploding event not allowed.");
+    // console.log("Click disabled. Exploding event not allowed.");
     return; // Do nothing if clicks are disabled
   }
   
-  console.log("User clicked! Playing [300..500] segment now.");
+  // console.log("User clicked! Playing [300..500] segment now.");
 
 
 
@@ -103,7 +103,7 @@ function handleFirstClick() {
   setTimeout(() => {
     document.dispatchEvent(new Event(`${window.MediaID}-${window.MediaVersionID}-FINISHED`));
     window.parent.postMessage(`${window.MediaID}-${window.MediaVersionID}-FINISHED`, "*");
-    console.log(`${window.MediaID}-${window.MediaVersionID}-FINISHED 🏁 -> was fired!🚀`);
+    // console.log(`${window.MediaID}-${window.MediaVersionID}-FINISHED 🏁 -> was fired!🚀`);
   }, 1500);
 
   // Remove this event listener so it won't happen again
